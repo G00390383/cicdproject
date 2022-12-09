@@ -3,14 +3,14 @@ version: '3.8'
 services:
 
   testingproj-container:
-    image: testingproj:0.0.1-SNAPSHOT
+    image: microservices:0.0.1-SNAPSHOT
     build:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - /data/testingproj-container
+      - /data/microservices-container
     ports:
-      - 8080:8080
+      - 8081:8081
     depends_on:
       - mongo
 
