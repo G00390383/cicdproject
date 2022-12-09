@@ -1,16 +1,24 @@
-arch: amd64
+# using Ubuntu 18.04
+dist: xenial
 
+services:
+  # to link travis and docker
+  - docker
+
+# for testing
 language: java
 
+# using java 17
 jdk:
-  - oraclejdk17
-
-cache:
-  directories:
-    - $HOME/.m2
+  - openjdk17
 
 before_install:
   - chmod +x mvnw
-script:
-  - java --version
-  - mvn clean install -B
+  - mvn clean
+  - echo "$DOCKER_PASS" | docker login  -u "$DOCKER_USER" --password-stdin
+  - docker pull openjdk:17-jdk-alpine
+
+# running maven install
+install:
+  - mvn -N io.takari:maven:wrapper
+  - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
