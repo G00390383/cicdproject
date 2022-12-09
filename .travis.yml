@@ -8,7 +8,7 @@ services:
 # for testing
 language: java
 
-# using java 17
+# using java 17 for file
 jdk:
   - openjdk17
 
