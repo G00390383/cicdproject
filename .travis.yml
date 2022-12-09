@@ -1,0 +1,16 @@
+arch: amd64
+
+language: java
+
+jdk:
+  - oraclejdk17
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_install:
+  - chmod +x mvnw
+script:
+  - java --version
+  - mvn clean install -B
