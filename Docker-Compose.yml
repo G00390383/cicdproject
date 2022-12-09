@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  testingproj-container:
+    image: testingproj:0.0.1-SNAPSHOT
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/testingproj-container
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootuser
+      MONGO_INITDB_ROOT_PASSWORD: rootpass
+
+volumes:
+  data: {}
+networks:
+  default:
+    name: mongodb_network
