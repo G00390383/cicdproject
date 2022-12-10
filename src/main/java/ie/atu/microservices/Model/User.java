@@ -10,7 +10,7 @@ public class User {
         setName(name);
         setPpsnNo(ppsnNo);
         setCreditScore(creditScore);
-        this.emailId = emailId;
+        setEmailId(emailId);
     }
 
     public String getName() {
@@ -57,6 +57,11 @@ public class User {
     }
 
     public void setEmailId(String emailId) {
-        this.emailId = emailId;
+        if(emailId.endsWith("gmail.com") || emailId.endsWith("atu.ie")) {
+            this.emailId = emailId;
+        }
+        else{
+            throw new IllegalArgumentException("Only gmail and atu emails accepted");
+        }
     }
 }
