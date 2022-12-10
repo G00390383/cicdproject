@@ -1,7 +1,20 @@
 package ie.atu.microservices.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "User")
+
 public class User {
     private static int count = 0;
+    @Id
     private int id;
     private String name;
     private Long ppsnNo;
