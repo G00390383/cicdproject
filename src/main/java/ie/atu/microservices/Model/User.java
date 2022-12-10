@@ -34,6 +34,9 @@ public class User {
         if(Long.toString(ppsnNo).length() >9 || Long.toString(ppsnNo).length()<8) {
             throw new IllegalArgumentException("PPSN number must be 8 or 9 characters long");
         }
+        else{
+            this.ppsnNo = ppsnNo;
+        }
     }
 
     public int getCreditScore() {
