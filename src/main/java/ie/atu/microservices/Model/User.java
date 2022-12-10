@@ -1,16 +1,30 @@
 package ie.atu.microservices.Model;
 
 public class User {
+    private static int count = 0;
+    private int id;
     private String name;
     private Long ppsnNo;
     private int creditScore;
     private String emailId;
 
     public User(String name, Long ppsnNo, int creditScore, String emailId) {
+        setId();
         setName(name);
         setPpsnNo(ppsnNo);
         setCreditScore(creditScore);
         setEmailId(emailId);
+        //add balance
+        //bank id
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = count;
+        count++;
     }
 
     public String getName() {
