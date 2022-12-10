@@ -1,4 +1,4 @@
-package ie.atu.microservices;
+package ie.atu.microservices.Model;
 
 public class User {
     private String name;
@@ -8,7 +8,7 @@ public class User {
 
     public User(String name, Long ppsnNo, int creditScore, String emailId) {
         setName(name);
-        this.ppsnNo = ppsnNo;
+        setPpsnNo(ppsnNo);
         this.creditScore = creditScore;
         this.emailId = emailId;
     }
@@ -31,7 +31,9 @@ public class User {
     }
 
     public void setPpsnNo(Long ppsnNo) {
-        this.ppsnNo = ppsnNo;
+        if(Long.toString(ppsnNo).length() >9 || Long.toString(ppsnNo).length()<8) {
+            throw new IllegalArgumentException("PPSN number must be 8 or 9 characters long");
+        }
     }
 
     public int getCreditScore() {
