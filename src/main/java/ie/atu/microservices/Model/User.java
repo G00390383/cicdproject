@@ -26,6 +26,9 @@ public class User {
     public void setId() {
         this.id = count;
         count++;
+        //create amax count for database
+        //if > maxcount -> exception
+        //throw exception
     }
 
     public String getName() {
