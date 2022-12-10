@@ -39,6 +39,20 @@ class UserTest {
         assertEquals("PPSN number must be 8 or 9 characters long",e_message.getMessage());
     }
 
+    @Test
+    void testCreditscr_success()
+    {
+        User Shan = new User("Shannon",12345678L,370,"shannongf74@gmail.com");
+        assertEquals(370,Shan.getCreditScore());
+    }
+
+    @Test
+    void testCreditscr_fail()
+    {
+        Exception e_message = assertThrows(IllegalArgumentException.class,() -> Joe = new User("Joe",12345678L,900,"shannongf74@gmail.com"));
+        assertEquals("Credit score can only be between 300 and 850",e_message.getMessage());
+
+    }
     @AfterAll
     static void afterAll() {
 
