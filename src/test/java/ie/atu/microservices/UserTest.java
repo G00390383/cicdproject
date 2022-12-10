@@ -53,6 +53,20 @@ class UserTest {
         assertEquals("Credit score can only be between 300 and 850",e_message.getMessage());
 
     }
+
+    @Test
+    void testEmail_success()
+    {
+        User Shan = new User("Shannon",12345678L,370,"shannongf74@gmail.com");
+        assertEquals("shannongf74@gmail.com",Shan.getEmailId());
+    }
+
+    @Test
+    void testEmail_fail()
+    {
+        Exception e_message = assertThrows(IllegalArgumentException.class,() -> Joe = new User("Joe",12345678L,400,"shannongf74@yahoo.com"));
+        assertEquals("Only gmail and atu emails accepted",e_message.getMessage());
+    }
     @AfterAll
     static void afterAll() {
 
