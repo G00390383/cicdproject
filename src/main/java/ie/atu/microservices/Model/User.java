@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Document(collection = "User")
+@Document(collection = "users")
 
 public class User {
-    private static int count = 0;
     @Id
+    @Indexed
     private int id;
     private String name;
     private Long ppsnNo;
@@ -22,23 +22,21 @@ public class User {
     private String emailId;
     private Long balance = 0L;
 
-    public User(String name, Long ppsnNo, int creditScore, String emailId) {
-        setId();
-        setName(name);
-        setPpsnNo(ppsnNo);
-        setCreditScore(creditScore);
-        setEmailId(emailId);
-
-        //bank id
-    }
-
     public int getId() {
         return id;
     }
 
-    public void setId() {
-        this.id = count;
-        count++;
+    public User(int id, String name, Long ppsnNo, int creditScore, String emailId, Long balance) {
+        setId(id);
+        setName(name);
+        setPpsnNo(ppsnNo);
+        setCreditScore(creditScore);
+        setEmailId(emailId);
+        setBalance(balance);
+    }
+
+    public void setId(int id) {
+        this.id = id;
         //create amax count for database
         //if > maxcount -> exception
         //throw exception

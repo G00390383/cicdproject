@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -34,12 +35,12 @@ public class UserController {
     }
 
     @GetMapping("/findUser/{id}")
-    public User getUser(@PathVariable(value = "id") int id) throws UserNotFoundException
+    public Optional<User> getUser(@PathVariable(value = "id") int id) throws UserNotFoundException
     {
-        User user;
+        Optional<User> user;
         if(repo.existsById(id))
         {
-           user = repo.findbyId(id);
+           user = repo.findById(id);
         }
         else {
             throw new UserNotFoundException(id);
