@@ -14,4 +14,4 @@ ARG JAR_FILE=target/microservice-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} microservice-0.0.1-SNAPSHOT.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/microservice-latest.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/microservice-0.0.1-SNAPSHOT.jar"]
