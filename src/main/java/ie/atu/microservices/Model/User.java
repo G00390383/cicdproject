@@ -7,6 +7,7 @@ public class User {
     private Long ppsnNo;
     private int creditScore;
     private String emailId;
+    private Long balance = 0L;
 
     public User(String name, Long ppsnNo, int creditScore, String emailId) {
         setId();
@@ -14,7 +15,7 @@ public class User {
         setPpsnNo(ppsnNo);
         setCreditScore(creditScore);
         setEmailId(emailId);
-        //add balance
+
         //bank id
     }
 
@@ -77,5 +78,13 @@ public class User {
         else{
             throw new IllegalArgumentException("Only gmail and atu emails accepted");
         }
+    }
+
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
     }
 }
