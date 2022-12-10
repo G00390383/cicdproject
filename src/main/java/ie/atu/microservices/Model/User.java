@@ -9,7 +9,7 @@ public class User {
     public User(String name, Long ppsnNo, int creditScore, String emailId) {
         setName(name);
         setPpsnNo(ppsnNo);
-        this.creditScore = creditScore;
+        setCreditScore(creditScore);
         this.emailId = emailId;
     }
 
@@ -44,7 +44,12 @@ public class User {
     }
 
     public void setCreditScore(int creditScore) {
-        this.creditScore = creditScore;
+        if((300 <= creditScore ) && (creditScore <= 850)) {
+            this.creditScore = creditScore;
+        }
+        else{
+            throw new IllegalArgumentException("Credit score can only be between 300 and 850");
+        }
     }
 
     public String getEmailId() {
