@@ -15,11 +15,10 @@ jdk:
 before_install:
   - chmod +x mvnw
   - mvn clean
-  - mvn package
   - echo "$DOCKER_PASS" | docker login  -u "$DOCKER_USER" --password-stdin
   - docker pull openjdk:17-jdk-alpine
 
 # running maven install on code
 install:
   - mvn -N io.takari:maven:wrapper
-  - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - ./mvnw install -Dmaven.javadoc.skip=true -B -V
