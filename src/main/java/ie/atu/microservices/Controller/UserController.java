@@ -60,6 +60,17 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    @PutMapping("findUser/{id}")
+    public ResponseEntity<User> updateUserCreditScore(@PathVariable(value = "id") int id, @RequestBody int creditScore)
+            throws UserNotFoundException
+    {
+        User user = repo.findById(id)
+                .orElseThrow(()-> new UserNotFoundException(id));
+        user.setCreditScore(creditScore);
+        final User updatedUser = repo.save(user);
+        return ResponseEntity.ok(updatedUser);
+    }
+
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id)
     {
