@@ -71,6 +71,17 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    @PutMapping("findUser/{id}")
+    public ResponseEntity<User> updateUserName(@PathVariable(value = "id") int id, @RequestBody String name)
+            throws UserNotFoundException
+    {
+        User user = repo.findById(id)
+                .orElseThrow(()-> new UserNotFoundException(id));
+        user.setName(name);
+        final User updatedUser = repo.save(user);
+        return ResponseEntity.ok(updatedUser);
+    }
+
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id)
     {
