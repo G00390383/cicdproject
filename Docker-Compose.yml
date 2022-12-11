@@ -1,19 +1,19 @@
 version: '3.8'
 
 services:
-
+  #our program container
   testingproj-container:
-    image: microservices:0.0.1-SNAPSHOT
-    container_name: microservices
+    image: microservices:0.0.1-SNAPSHOT     #the image name
+    container_name: microservices           #container name
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile              #access dockerfile
     volumes:
-      - /data/microservices-container
+      - /data/microservices-container     #store persisting data
     ports:
-      - 8081:8081
+      - 8081:8081                         #program port
     links:
-      - mongo
+      - mongo                             #links with mongo container
 
   mongo:
     image: mongo
@@ -27,5 +27,5 @@ volumes:
   data: {}
 
 networks:
-  default:
+  default:      #using default network
     name: mongodb_network

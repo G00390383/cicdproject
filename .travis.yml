@@ -1,24 +1,26 @@
-# using Ubuntu 18.04
+# dist specifies what distribution of linux were using
+# we'll be using Ubuntu 18.04 xenial
 dist: xenial
 
 services:
   # to link travis and docker
   - docker
 
-# for testing
+# specifies the program language
 language: java
 
 # using java 17 for file
 jdk:
   - openjdk17
 
+# commands to be run before install
 before_install:
-  - chmod +x mvnw
-  - mvn clean
-  - echo "$DOCKER_PASS" | docker login  -u "$DOCKER_USER" --password-stdin
-  - docker pull openjdk:17-jdk-alpine
+  - chmod +x mvnw     #make mvnw executable
+  - mvn clean         #run maven clean function
+  - echo "$DOCKER_PASS" | docker login  -u "$DOCKER_USER" --password-stdin  #copy docker credentials
+  - docker pull openjdk:17-jdk-alpine   #pull java image from docker
 
 # running maven install on code
 install:
-  - mvn -N io.takari:maven:wrapper
-  - ./mvnw install -Dmaven.javadoc.skip=true -B -V
+  - mvn -N io.takari:maven:wrapper  #ensure file can run maven build
+  - ./mvnw install -Dmaven.javadoc.skip=true -B -V  #run maven install and skip javadoc generation
