@@ -18,13 +18,10 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-ce
   - docker-compose --version
-  - docker-compose.yml pull
-  - docker-compose.yml build
-  - docker-compose.yml start
-  - docker ps
   - mvn clean
   - echo "$DOCKER_PASS" | docker login  -u "$DOCKER_USER" --password-stdin
   - docker pull openjdk:17-jdk-alpine
+  - docker-compose.yml
 
 # running maven install on code
 install:
