@@ -4,6 +4,7 @@ import ie.atu.microservices.Exceptions.UserNotFoundException;
 import ie.atu.microservices.Model.User;
 import ie.atu.microservices.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +47,17 @@ public class UserController {
             throw new UserNotFoundException(id);
         }
         return user;
+    }
+
+    @PutMapping("findUser/{id}")
+    public ResponseEntity<User> updateUserPpsn(@PathVariable(value = "id") int id, @RequestBody Long ppsn)
+            throws UserNotFoundException
+    {
+        User user = repo.findById(id)
+                .orElseThrow(()-> new UserNotFoundException(id));
+        user.setPpsnNo(ppsn);
+        final User updatedUser = repo.save(user);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/delete/{id}")
