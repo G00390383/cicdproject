@@ -11,7 +11,7 @@ services:
       - /data/microservices-container
     ports:
       - 8081:8081
-    depends_on:
+    links:
       - mongo
 
   mongo:
