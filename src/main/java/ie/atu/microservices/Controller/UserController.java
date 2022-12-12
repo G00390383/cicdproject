@@ -16,6 +16,7 @@ public class UserController {
     @Autowired
     private UserRepo repo;
 
+    //Code to Create a user if user id is not taken
     @PostMapping("/addUser")
     public String addUser(@RequestBody User user)
     {
@@ -29,12 +30,14 @@ public class UserController {
         return "Added Successfully";
     }
 
+    //Code to Get all existing users
     @GetMapping("/allUsers")
     public List<User> getUsers()
     {
         return repo.findAll();
     }
 
+    //Code to find user by id, throws exception if doesn't exist
     @GetMapping("/findUser/{id}")
     public Optional<User> getUser(@PathVariable(value = "id") int id) throws UserNotFoundException
     {
@@ -85,6 +88,7 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    //Code to delete a user if it exists, else throws an exception
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id)
     {
@@ -96,7 +100,6 @@ public class UserController {
         }
         else
         {
-            response = "Failed to delete user";
             throw new UserNotFoundException(id);
         }
         return response;
