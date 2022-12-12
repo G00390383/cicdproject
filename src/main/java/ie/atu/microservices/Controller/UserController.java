@@ -104,4 +104,14 @@ public class UserController {
         }
         return response;
     }
+    @PutMapping("/updateBalance/{id}")
+    public ResponseEntity<User> updateUserBalance(@PathVariable(value = "id") int id, @RequestBody Long balance)
+            throws UserNotFoundException
+    {
+        User user = repo.findById(id)
+                .orElseThrow(()-> new UserNotFoundException(id));
+        user.setBalance(balance);
+        final User updatedUser = repo.save(user);
+        return ResponseEntity.ok(updatedUser);
+    }
 }
