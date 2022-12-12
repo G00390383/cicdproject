@@ -1,4 +1,4 @@
-#pipeline
+demo#demo
 # dist specifies what distribution of linux were using
 # we'll be using Ubuntu 18.04 xenial
 dist: xenial
