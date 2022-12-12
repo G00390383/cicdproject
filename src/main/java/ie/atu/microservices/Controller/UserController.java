@@ -53,7 +53,7 @@ public class UserController {
     }
 
     //Code to update a users PPSN by checking if the user exists by ID and updating that users PPSN
-    @PutMapping("updatePpsn/{id}")
+    @PutMapping("/updatePpsn/{id}")
     public ResponseEntity<User> updateUserPpsn(@PathVariable(value = "id") int id, @RequestBody Long ppsn)
             throws UserNotFoundException
     {
@@ -65,7 +65,7 @@ public class UserController {
     }
 
     //Code to update a users credit score by checking if the user exists by ID and updating that users credit score
-    @PutMapping("updateCredScore/{id}")
+    @PutMapping("/updateCredScore/{id}")
     public ResponseEntity<User> updateUserCreditScore(@PathVariable(value = "id") int id, @RequestBody int creditScore)
             throws UserNotFoundException
     {
@@ -77,7 +77,7 @@ public class UserController {
     }
 
     //Code to update a users name by checking if the user exists by ID and updating that users name
-    @PutMapping("updateName/{id}")
+    @PutMapping("/updateName/{id}")
     public ResponseEntity<User> updateUserName(@PathVariable(value = "id") int id, @RequestBody String name)
             throws UserNotFoundException
     {
